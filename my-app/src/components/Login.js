@@ -10,10 +10,12 @@ import {
   Button,
   Heading,
   Text,
-  useColorModeValue,
+  
 } from '@chakra-ui/react';
-import { useState } from 'react';
-
+import { useState,useEffect } from 'react';
+import { useDispatch,useSelector } from 'react-redux';
+import { loginUser } from '../actions/auth';
+import {Navigate} from 'react-router'
 
 
 
@@ -21,18 +23,21 @@ export default function Login() {
 
    const [email,setEmail] = useState('')
    const [password,setPassword] = useState('')
+   const dispatch = useDispatch()
+  
+   const {token} = useSelector(state=>state.auth) 
+
    
    const handlelogin =()=>{
-    console.log({email,password})
-   }
+    dispatch(loginUser(email,password))
+   } 
 
 
-  return (
-    <Flex
+  return token ? < Navigate to='/'/> : <Flex
       minH={'100vh'}
       align={'center'}
       justify={'center'}
-      bg={useColorModeValue('gray.50', 'gray.800')}>
+      bg={'gray.50'}>
       <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
         <Stack align={'center'}>
           <Heading fontSize={'4xl'}>Sign in to your account</Heading>
@@ -42,7 +47,7 @@ export default function Login() {
         </Stack>
         <Box
           rounded={'lg'}
-          bg={useColorModeValue('white', 'gray.700')}
+          bg={'white'}
           boxShadow={'lg'}
           p={8}>
           <Stack spacing={4}>
@@ -76,5 +81,5 @@ export default function Login() {
         </Box>
       </Stack>
     </Flex>
-  );
+  
 }

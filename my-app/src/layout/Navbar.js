@@ -24,10 +24,11 @@ import {
 } from '@chakra-ui/icons';
 
 import { Link as lee } from 'react-router-dom'
+import { useSelector } from 'react-redux';
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
-
+  const {token} = useSelector(state=>state.auth)
   return (
       <Box>
           <Flex
@@ -59,7 +60,7 @@ export default function Navbar() {
                   </Flex>
               </Flex>
 
-              <Stack
+              {token ? null : <Stack
                   flex={{ base: 1, md: 0 }}
                   justify={'flex-end'}
                   direction={'row'}
@@ -85,7 +86,7 @@ export default function Navbar() {
                       }}>
                       Sign Up
                   </Button>
-              </Stack>
+              </Stack>}
           </Flex>
 
           <Collapse in={isOpen} animateOpacity>

@@ -17,9 +17,26 @@ import {
 import { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import {Link as routerlink} from 'react-router-dom'
+import toast from 'react-hot-toast';
 
 export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);
+  const [email,setEmail] = useState('')
+  const [password,setPassword] = useState('')
+  const [firstName,setFirstName] = useState('')
+  const [lastName,setLastName] = useState('')
+
+  const handleSignup =()=>{
+    console.log({email,password,firstName,lastName})
+
+    const users = JSON.parse(localStorage.getItem('users')) ?? []
+    // console.log(users)
+    toast.success("SIGNUP SUCCESS")
+      localStorage.setItem('users',JSON.stringify([...users,{email,password,firstName,lastName}]))
+    
+    
+  }
+
 
   return (
     <Flex
@@ -46,24 +63,24 @@ export default function Signup() {
               <Box>
                 <FormControl id="firstName" isRequired>
                   <FormLabel>First Name</FormLabel>
-                  <Input type="text" />
+                  <Input onChange={e=>{setFirstName(e.target.value)}} type="text" />
                 </FormControl>
               </Box>
               <Box>
                 <FormControl id="lastName">
                   <FormLabel>Last Name</FormLabel>
-                  <Input type="text" />
+                  <Input onChange={e=>{setLastName(e.target.value)}} type="text" />
                 </FormControl>
               </Box>
             </HStack>
             <FormControl id="email" isRequired>
               <FormLabel>Email address</FormLabel>
-              <Input type="email" />
+              <Input onChange={e=>{setEmail(e.target.value)}} type="email" />
             </FormControl>
             <FormControl id="password" isRequired>
               <FormLabel>Password</FormLabel>
               <InputGroup>
-                <Input type={showPassword ? 'text' : 'password'} />
+                <Input onChange={e=>{setPassword(e.target.value)}}  type={showPassword ? 'text' : 'password'} />
                 <InputRightElement h={'full'}>
                   <Button
                     variant={'ghost'}
@@ -76,7 +93,7 @@ export default function Signup() {
               </InputGroup>
             </FormControl>
             <Stack spacing={10} pt={2}>
-              <Button
+              <Button onClick={handleSignup}
                 loadingText="Submitting"
                 size="lg"
                 bg={'blue.400'}

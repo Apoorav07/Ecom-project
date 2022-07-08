@@ -11,7 +11,14 @@ switch(type) {
     return {...payload}
 
     case "LOGIN_FAILED":
-    return {...payload}
+    return {
+      ...payload
+    }
+   
+  case "LOGOUT":
+    return{
+      token:null
+    }
 
   default:
      return state

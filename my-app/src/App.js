@@ -1,28 +1,26 @@
-import Home from './components/Home'
-import Adminpage from './components/Adminpage'
-import Login from './components/Login'
-import Myorders from './components/Myorders'
-import Order from './components/Order'
-import Product from './components/Product'
-import Products from './components/Products'
-import Signup from './components/Signup'
-import Navbar from './layout/Navbar'
-import {Routes,Route} from 'react-router-dom'
-import Privateroute from './routing/Privateroute'
-import {Toaster} from 'react-hot-toast'
-const App=()=> {
+import Home from "./components/Home";
+import Products from "./components/Products";
+import Navbar from "./layout/Navbar";
+import { Routes, Route } from 'react-router-dom'
+
+import Product from "./components/Product/Product";
+import Footer from "./layout/Footer";
+import Login from "./auth/Login";
+import SignUp from "./auth/Signup";
+function App() {
+
   return (
-    <div >
-      <div><Toaster/></div>
-      <Navbar/>
+    <div className="App">
+      <Navbar />
+      {/* <Home /> */}
       <Routes>
-        <Route path='/' element= {<Home/>}/>
-        <Route path='/login' element= {<Login/>}/>
-        <Route path='/signup' element= {<Signup/>}/>
-        <Route path='/shop' element= {<Product/>}/>
-        <Route path='/admin' element= {<Adminpage/>}/>
+        <Route path='/' element={<Home />} />
+        <Route path='/shop' element={<Products />} />
+        <Route path='/shop/:productId' element={<Product />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<SignUp />} />
       </Routes>
-    
+      <Footer />
 
     </div>
   );

@@ -2,11 +2,11 @@ import Home from "./components/Home";
 import Products from "./components/Products";
 import Navbar from "./layout/Navbar";
 import { Routes, Route } from 'react-router-dom'
-
 import Product from "./components/Product/Product";
 import Footer from "./layout/Footer";
 import Login from "./auth/Login";
-import SignUp from "./auth/Signup";
+import Signup from "./auth/Signup";
+import Admin from "./components/admin/Admin";
 function App() {
 
   return (
@@ -18,12 +18,12 @@ function App() {
         <Route path='/shop' element={<Products />} />
         <Route path='/shop/:productId' element={<Product />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/signup' element={<SignUp />} />
+        <Route path='/signup' element={<Signup />} />
+        <Route path='/admin' element={<Admin />} />
       </Routes>
       <Footer />
 
     </div>
   );
 }
-
 export default App;

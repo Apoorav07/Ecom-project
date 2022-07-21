@@ -7,12 +7,15 @@ import Footer from "./layout/Footer";
 import Login from "./auth/Login";
 import Signup from "./auth/Signup";
 import Admin from "./components/admin/Admin";
-function App() {
+import { Toaster } from "react-hot-toast";
+
+function App  () {
 
   return (
     <div className="App">
       <Navbar />
       {/* <Home /> */}
+      <Toaster />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/shop' element={<Products />} />
@@ -22,7 +25,6 @@ function App() {
         <Route path='/admin' element={<Admin />} />
       </Routes>
       <Footer />
-
     </div>
   );
 }
